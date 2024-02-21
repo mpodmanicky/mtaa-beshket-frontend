@@ -1,4 +1,5 @@
 # Beshket(EN)
-## Frontend of our Application
+## Frontend for Beshket Application
 Project for MTAA, FIIT Bratislava
-TEAM: Kuklych Serhii, Podmanicky Martin
+### TEAM 
+Kuklych Serhii, Podmanicky Martin
