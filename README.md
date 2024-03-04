@@ -4,7 +4,7 @@ MTAA, FIIT Bratislava
 ### Tim:
 Kuklych Serhii, Podmanicky Martin
 ### Pouzite technologie:
- - Kotlin Multiplatfrom
+ - Kotlin Multiplatfrom/Flutter
  - PostgreSQL
  - Docker/Kubernetes
 ### Povinne volitelne casti:
