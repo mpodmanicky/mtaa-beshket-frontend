@@ -1,4 +1,4 @@
-import 'package:beshket/features/authentication/screens/authentication_screen.dart';
+/*import 'package:beshket/features/authentication/screens/authentication_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -18,4 +18,4 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         )
       );
   }
-}
+}*/

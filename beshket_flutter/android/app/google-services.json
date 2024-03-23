@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642867167110",
+    "project_id": "beshket-841f0",
+    "storage_bucket": "beshket-841f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642867167110:android:f14e93d2af5e2577f33607",
+        "android_client_info": {
+          "package_name": "beshket.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvDIVul2PPoncPnfDoHhmkH3_lujixzIE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
