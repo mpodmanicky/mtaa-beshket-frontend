@@ -1,5 +1,7 @@
+import 'package:beshket/features/authentication/widgets/authentication_error.dart';
 import 'package:beshket/features/authentication/widgets/authentication_form.dart';
 import 'package:beshket/features/authentication/widgets/authentication_login_button.dart';
+import 'package:beshket/features/authentication/widgets/authentication_progress.dart';
 import 'package:beshket/features/authentication/widgets/authentication_signup_button.dart';
 import 'package:flutter/material.dart';
 import 'package:beshket/features/authentication/services/auth_firebase.dart';
@@ -19,9 +21,9 @@ enum FormMode { login, signUp }
 class LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  late String _email;
-  late String _password;
-  late String _error;
+  String _email= "";
+  String _password = "";
+  String _error = "";
 
   FormMode _formMode = FormMode.login;
   bool _isIos = false;
@@ -33,12 +35,13 @@ class LoginScreenState extends State<LoginScreen> {
         title: Text('Beshket')
       ),
       body: Column(
-        children: [
-          AuthenticationFormWidget(loginScreenState: this),
-          AuthenticationLoginButtonWidget(loginScreenState: this),
-          AuthenticationLoginButtonWidget(loginScreenState: this),
-          AuthenticationSignUpButtonWidget(loginScreenState: this)
-        ],
+          children: [
+            AuthenticationFormWidget(loginScreenState: this),
+            AuthenticationLoginButtonWidget(loginScreenState: this),
+            AuthenticationSignUpButtonWidget(loginScreenState: this),
+            AuthenticationErrorWidget(loginScreenState: this),
+            AuthenticationProgressingWidget(loginScreenState: this)
+          ],
       )
     );
   }
@@ -69,33 +72,39 @@ class LoginScreenState extends State<LoginScreen> {
     return false;
   }
 
+
   submitForm() async {
-    setState(() {
+    /*setState(() {
       _error = "";
       _isLoading = true;
     });
-    if( saveForm() ){
-      String userId = "";
-      if ( _formMode == FormMode.login ){
-        userId = widget.authentication.signIn(_email, _password) as String;
+    try {
+      if( saveForm() ){
+        String userId = "";
+        if ( _formMode == FormMode.login ){
+          userId = widget.authentication.signIn(_email, _password) as String;
+        } else {
+          userId = widget.authentication.signUp(_email, _password) as String;
+        }
+
+        setState(() {
+          _isLoading = false;
+        });
+
+        if(userId.isNotEmpty) {
+          widget.onSignedIn();
+        }
       } else {
-        userId = widget.authentication.signUp(_email, _password) as String;
-      }
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      if(userId.isNotEmpty) {
-        widget.onSignedIn();
-      }
-    } else {
-      setState(() {
-        _isLoading = false;
-      });
+        setState(() {
+          _isLoading = false;
+        });
     }
-  }
-
+  }catch (e) {
+      setState(() {
+        _isLoading = false;
+      }); 
+  }*/
+}
 
   void setEmail(String newEmail){
     _email = newEmail;

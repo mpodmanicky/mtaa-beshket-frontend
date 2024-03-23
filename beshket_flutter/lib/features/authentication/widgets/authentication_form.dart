@@ -12,10 +12,18 @@ class AuthenticationFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: loginScreenState.getFormKey(),
-      child: Column(
+      child: loginScreenState.getFormMode() == FormMode.login 
+      ? Column(
         children: [
-          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),
-          AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState)
+          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),          
+          AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState) 
+        ],)
+      : Column(
+        children: [
+          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),          
+          AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState),
+          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),          
+          AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState) 
         ],)
     );
   }
