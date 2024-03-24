@@ -1,5 +1,8 @@
 import 'package:beshket/features/authentication/widgets/authentication_email_form.dart';
 import 'package:beshket/features/authentication/widgets/authentication_password_form.dart';
+import 'package:beshket/features/authentication/widgets/authentication_name_form.dart';
+import 'package:beshket/features/authentication/widgets/authentication_surname_form.dart';
+import 'package:beshket/features/authentication/widgets/authentication_birthdate_form.dart';
 import 'package:flutter/material.dart';
 import 'package:beshket/features/authentication/screens/login_screen.dart';
 
@@ -20,10 +23,11 @@ class AuthenticationFormWidget extends StatelessWidget {
         ],)
       : Column(
         children: [
-          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),          
+          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),
+          AuthenticationNameFormWidget(hintText: 'Name', isPassword: false, loginScreenState: loginScreenState),          
+          AuthenticationSurnameFormWidget(hintText: 'Surname', isPassword: false, loginScreenState: loginScreenState),          
           AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState),
-          AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),          
-          AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState) 
+          AuthenticationBirthdateFormWidget(hintText: 'Birthday', isPassword: false, loginScreenState: loginScreenState)
         ],)
     );
   }
