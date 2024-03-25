@@ -13,7 +13,7 @@ class AuthenticationNameFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 0.0),
       child: TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.name,

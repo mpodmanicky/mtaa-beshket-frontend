@@ -18,17 +18,19 @@ class AuthenticationFormWidget extends StatelessWidget {
       child: loginScreenState.getFormMode() == FormMode.login 
       ? Column(
         children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.27),
           AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),          
           AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState) 
         ],)
       : Column(
         children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.13),
           AuthenticationEmailFormWidget(hintText: 'Email', isPassword: false, loginScreenState: loginScreenState),
           AuthenticationNameFormWidget(hintText: 'Name', isPassword: false, loginScreenState: loginScreenState),          
           AuthenticationSurnameFormWidget(hintText: 'Surname', isPassword: false, loginScreenState: loginScreenState),          
           AuthenticationPasswordFormWidget(hintText: 'Password', isPassword: true, loginScreenState: loginScreenState),
           AuthenticationBirthdateFormWidget(hintText: 'Birthday', isPassword: false, loginScreenState: loginScreenState)
         ],)
-    );
+      );
   }
 }

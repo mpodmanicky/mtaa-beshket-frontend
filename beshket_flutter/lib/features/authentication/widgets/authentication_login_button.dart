@@ -16,12 +16,12 @@ class AuthenticationLoginButtonWidget extends StatelessWidget {
         minWidth: 200.0,
         height: 42.0,
         color: Colors.blue,
-        onPressed: () => { print('Login') }, //loginScreenState.submitForm(),
+        onPressed: () => { loginScreenState.submitForm() }, //() => { print('Login') }, 
         child: 
           loginScreenState.getFormMode() == FormMode.login 
-            ? Text('Create an Account',
+            ? Text('Sign in',
               style: TextStyle( fontSize: 18.0, fontWeight: FontWeight.w300))
-            : Text('Sing in', 
+            : Text('Create an account', 
               style: TextStyle( fontSize: 18.0, fontWeight: FontWeight.w300))
         )
     );

@@ -31,8 +31,11 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Beshket')
+        title: Center(
+          child: Text('Beshket')
+          )
       ),
       body: Column(
           children: [
@@ -74,7 +77,7 @@ class LoginScreenState extends State<LoginScreen> {
 
 
   submitForm() async {
-    /*setState(() {
+    setState(() {
       _error = "";
       _isLoading = true;
     });
@@ -103,7 +106,7 @@ class LoginScreenState extends State<LoginScreen> {
       setState(() {
         _isLoading = false;
       }); 
-  }*/
+  }
 }
 
   void setEmail(String newEmail){
