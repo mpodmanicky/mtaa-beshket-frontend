@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:beshket/features/authentication/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class FireBaseAuth {
@@ -15,6 +16,7 @@ class Authentication implements FireBaseAuth {
   Future<String> signIn(String email, String password) async {
     try {
       final credential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      print(credential);
       if (credential.user != null){
         return credential.user!.uid;
       }
@@ -24,10 +26,10 @@ class Authentication implements FireBaseAuth {
         print('Email or password was not entered correctly');
       }
     }
-    final user =  _firebaseAuth.currentUser;
+    /*final user =  _firebaseAuth.currentUser;
     if ( user != null){
       return user.uid.toString();
-    }
+    }*/
     return 'fail';
   }
 

@@ -26,7 +26,6 @@ class LoginScreenState extends State<LoginScreen> {
   String _error = "";
 
   FormMode _formMode = FormMode.login;
-  bool _isIos = false;
   bool _isLoading = false;
 
   Widget build(BuildContext context) {
@@ -81,28 +80,31 @@ class LoginScreenState extends State<LoginScreen> {
       _error = "";
       _isLoading = true;
     });
-    try {
-      if( saveForm() ){
-        String userId = "";
+    if( saveForm()){
+        String userId;
+        try {
         if ( _formMode == FormMode.login ){
-          userId = widget.authentication.signIn(_email, _password) as String;
+          userId = await widget.authentication.signIn(_email, _password);
+          print(userId);
         } else {
-          userId = widget.authentication.signUp(_email, _password) as String;
+          userId = await widget.authentication.signUp(_email, _password);
         }
 
         setState(() {
           _isLoading = false;
         });
 
-        if(userId.isNotEmpty) {
+        if(userId.toString().isNotEmpty) {
           widget.onSignedIn();
         }
-      } else {
+      } catch (e) {
         setState(() {
           _isLoading = false;
-        });
+          _error = 'Incorrect email or password';
+         });
+       }
     }
-  }catch (e) {
+  else {
       setState(() {
         _isLoading = false;
       }); 
@@ -115,6 +117,10 @@ class LoginScreenState extends State<LoginScreen> {
 
   void setPassword(String newPassword){
     _password = newPassword;
+  }
+
+  void setError(String errorMessage){
+    _error = errorMessage;
   }
 
   GlobalKey<FormState> getFormKey(){

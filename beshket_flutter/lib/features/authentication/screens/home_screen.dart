@@ -28,7 +28,7 @@ class _HomePageState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter login demo'),
+        title: Text('Home Screen'),
         actions: <Widget>[
           TextButton(
               onPressed: _signOut,
