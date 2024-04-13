@@ -1,6 +1,7 @@
 //Author: <Martin Podmanicky>
 
 import 'package:beshket/features/authentication/widgets/profile_widget.dart';
+import 'package:beshket/features/authentication/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beshket/features/authentication/services/auth_firebase.dart';
@@ -103,6 +104,9 @@ class _HomePageState extends State<HomeScreen> {
                 )),
           ],
         ),
+      ),
+      bottomNavigationBar: NavBar(
+        currentIndex: 1,
       ),
     );
   }
