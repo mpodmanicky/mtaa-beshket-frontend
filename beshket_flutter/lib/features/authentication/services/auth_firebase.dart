@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:beshket/features/authentication/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class FireBaseAuth {

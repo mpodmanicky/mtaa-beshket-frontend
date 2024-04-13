@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
   final String userId;
  
   @override
-  State<StatefulWidget> createState() => new _HomePageState();
+  State<StatefulWidget> createState() => _HomePageState();
 }
  
 class _HomePageState extends State<HomeScreen> {

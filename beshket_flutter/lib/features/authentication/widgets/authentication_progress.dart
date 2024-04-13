@@ -12,7 +12,7 @@ class AuthenticationProgressingWidget extends StatelessWidget {
     if ( loginScreenState.getIsLoading() ){
       return Center(child: CircularProgressIndicator());
     } else {
-      return Container(height: 0.0, width: 0.0);
+      return SizedBox(height: 0.0, width: 0.0);
     }
   }
 }

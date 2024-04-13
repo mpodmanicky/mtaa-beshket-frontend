@@ -7,6 +7,7 @@ class AuthenticationErrorWidget extends StatelessWidget {
 
   final LoginScreenState loginScreenState;
 
+  @override
   Widget build(BuildContext context) {
     if(loginScreenState.getError().isNotEmpty) {
       return Text(
@@ -19,7 +20,7 @@ class AuthenticationErrorWidget extends StatelessWidget {
         )
       );
     } else {
-      return Container( height: 0.0, width: 0.0);
+      return SizedBox( height: 0.0, width: 0.0);
     }
   }
 }

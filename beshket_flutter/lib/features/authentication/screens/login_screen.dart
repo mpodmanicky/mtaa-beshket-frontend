@@ -28,6 +28,7 @@ class LoginScreenState extends State<LoginScreen> {
   FormMode _formMode = FormMode.login;
   bool _isLoading = false;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
