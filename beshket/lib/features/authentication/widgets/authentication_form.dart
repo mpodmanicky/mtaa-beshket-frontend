@@ -1,10 +1,10 @@
-import 'package:beshket/features/authentication/widgets/authentication_email_form.dart';
-import 'package:beshket/features/authentication/widgets/authentication_password_form.dart';
-import 'package:beshket/features/authentication/widgets/authentication_name_form.dart';
-import 'package:beshket/features/authentication/widgets/authentication_surname_form.dart';
-import 'package:beshket/features/authentication/widgets/authentication_birthdate_form.dart';
+import '../widgets/authentication_email_form.dart';
+import '../widgets/authentication_password_form.dart';
+import '../widgets/authentication_name_form.dart';
+import '../widgets/authentication_surname_form.dart';
+import '../widgets/authentication_birthdate_form.dart';
 import 'package:flutter/material.dart';
-import 'package:beshket/features/authentication/screens/login_screen.dart';
+import '../screens/login_screen.dart';
 
 class AuthenticationFormWidget extends StatelessWidget {
   AuthenticationFormWidget({Key? key, required this.loginScreenState }): super(key: key);

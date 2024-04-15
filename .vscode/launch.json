@@ -8,7 +8,8 @@
             "name": "beshket_flutter",
             "cwd": "beshket_flutter",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "../beshket/lib/main.dart"
         },
         {
             "name": "beshket_flutter (profile mode)",

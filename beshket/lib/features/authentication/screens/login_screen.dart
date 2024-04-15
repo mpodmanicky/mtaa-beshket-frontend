@@ -1,10 +1,10 @@
-import 'package:beshket/features/authentication/widgets/authentication_error.dart';
-import 'package:beshket/features/authentication/widgets/authentication_form.dart';
-import 'package:beshket/features/authentication/widgets/authentication_login_button.dart';
-import 'package:beshket/features/authentication/widgets/authentication_progress.dart';
-import 'package:beshket/features/authentication/widgets/authentication_signup_button.dart';
+import '../widgets/authentication_error.dart';
+import '../widgets/authentication_form.dart';
+import '../widgets/authentication_login_button.dart';
+import '../widgets/authentication_progress.dart';
+import '../widgets/authentication_signup_button.dart';
 import 'package:flutter/material.dart';
-import 'package:beshket/features/authentication/services/auth_firebase.dart';
+import '../services/auth_firebase.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({ required this.authentication,  required this.onSignedIn });
