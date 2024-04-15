@@ -1,8 +1,10 @@
-import 'package:beshket/features/authentication/services/auth_firebase.dart';
-import 'package:beshket/features/authentication/screens/login_screen.dart';
-import 'package:beshket/features/authentication/screens/home_screen.dart';
-import 'package:beshket/features/authentication/screens/progress_screen.dart';
+import '../services/auth_firebase.dart';
+import '../screens/login_screen.dart';
+import '../screens/home_screen.dart';
+import '../screens/progress_screen.dart';
 import 'package:flutter/material.dart';
+
+
 
 
 class AuthenticationRoot extends StatefulWidget {

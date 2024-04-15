@@ -1,11 +1,11 @@
-import 'package:beshket/global_variables/global_app_bar.dart';
-import 'package:beshket/global_variables/global_scaffold.dart';
-import 'package:beshket/features/authentication/services/authentication_root.dart';
-import 'package:beshket/features/authentication/services/auth_firebase.dart';
+import 'global_variables/global_app_bar.dart';
+import 'global_variables/global_scaffold.dart';
+import 'features/authentication/services/authentication_root.dart';
+import 'features/authentication/services/auth_firebase.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+    
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
