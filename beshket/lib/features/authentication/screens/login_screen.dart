@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../services/auth_firebase.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({ required this.authentication,  required this.onSignedIn });
+  LoginScreen({required this.authentication, required this.onSignedIn});
 
   final FireBaseAuth authentication;
   final VoidCallback onSignedIn;
@@ -21,7 +21,7 @@ enum FormMode { login, signUp }
 class LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  String _email= "";
+  String _email = "";
   String _password = "";
   String _error = "";
 
@@ -31,13 +31,9 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Center(
-          child: Text('Beshket')
-          )
-      ),
-      body: Column(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(title: Center(child: Text('Beshket'))),
+        body: Column(
           children: [
             AuthenticationFormWidget(loginScreenState: this),
             AuthenticationLoginButtonWidget(loginScreenState: this),
@@ -45,8 +41,7 @@ class LoginScreenState extends State<LoginScreen> {
             AuthenticationErrorWidget(loginScreenState: this),
             AuthenticationProgressingWidget(loginScreenState: this)
           ],
-      )
-    );
+        ));
   }
 
   void showSignUpForm() {
@@ -65,26 +60,24 @@ class LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  
   bool saveForm() {
     final form = _formKey.currentState;
-    if (form!.validate() ){
+    if (form!.validate()) {
       form.save();
       return true;
     }
     return false;
   }
 
-
   submitForm() async {
     setState(() {
       _error = "";
       _isLoading = true;
     });
-    if( saveForm()){
-        String userId;
-        try {
-        if ( _formMode == FormMode.login ){
+    if (saveForm()) {
+      String userId;
+      try {
+        if (_formMode == FormMode.login) {
           userId = await widget.authentication.signIn(_email, _password);
           print(userId);
         } else {
@@ -95,40 +88,39 @@ class LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
 
-        if(userId.toString().isNotEmpty) {
+        if (userId.toString().isNotEmpty) {
           widget.onSignedIn();
         }
       } catch (e) {
         setState(() {
           _isLoading = false;
           _error = 'Incorrect email or password';
-         });
-       }
-    }
-  else {
+        });
+      }
+    } else {
       setState(() {
         _isLoading = false;
-      }); 
+      });
+    }
   }
-}
 
-  void setEmail(String newEmail){
+  void setEmail(String newEmail) {
     _email = newEmail;
   }
 
-  void setPassword(String newPassword){
+  void setPassword(String newPassword) {
     _password = newPassword;
   }
 
-  void setError(String errorMessage){
+  void setError(String errorMessage) {
     _error = errorMessage;
   }
 
-  GlobalKey<FormState> getFormKey(){
+  GlobalKey<FormState> getFormKey() {
     return _formKey;
   }
 
-  FormMode getFormMode(){
+  FormMode getFormMode() {
     return _formMode;
   }
 

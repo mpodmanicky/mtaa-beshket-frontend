@@ -1,11 +1,9 @@
 //Author: <Martin Podmanicky>
 
 import '../widgets/profile_widget.dart';
-import '../widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../services/auth_firebase.dart';
-
 
 class HomeScreen extends StatefulWidget {
   HomeScreen(
@@ -22,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeScreen> {
+  int currentPageIndex = 1;
   _signOut() async {
     try {
       await widget.authentication.signOut();
@@ -81,9 +80,6 @@ class _HomePageState extends State<HomeScreen> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightGreenAccent,
-                        ),
                         onPressed: () {
                           print('Button was pressed.');
                         },
@@ -92,9 +88,6 @@ class _HomePageState extends State<HomeScreen> {
                     ),
                     Expanded(
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
-                        ),
                         onPressed: () {
                           print('Button was pressed.');
                         },
@@ -106,8 +99,25 @@ class _HomePageState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(
-        currentIndex: 1,
+      //navigation bar reusable
+      bottomNavigationBar: NavigationBar(
+        //indicator colour
+        indicatorColor: Colors.lightBlueAccent,
+        //index of a page
+        selectedIndex: currentPageIndex,
+        //callback function what to do to change index
+        onDestinationSelected: (int index) {
+          setState(() => {currentPageIndex = index});
+        },
+        //destinations for the navbar
+        destinations: [
+          NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(
+              icon: Icon(Icons.storage_outlined), label: 'Tickets'),
+          NavigationDestination(
+              icon: Icon(Icons.message_outlined), label: 'Chats'),
+        ],
       ),
     );
   }

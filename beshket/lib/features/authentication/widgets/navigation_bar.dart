@@ -1,39 +1,44 @@
 //Author: <Martin Podmanicky>
 
+import 'package:beshket/features/authentication/screens/cart_screen.dart';
+import 'package:beshket/features/authentication/screens/chat_screen.dart';
+import 'package:beshket/features/authentication/screens/home_screen.dart';
+import 'package:beshket/features/authentication/screens/tickets_screen.dart';
 import 'package:flutter/material.dart';
 
-class NavBar extends StatelessWidget {
-  final int currentIndex; // Index of the currently selected item
-  //final Function(int) onItemSelected; // Callback to handle item selection
+class NavBar extends StatefulWidget {
+  final List<Widget> screens = [
+    Chats(),
+    Tickets(),
+    Cart(),
+  ];
 
-  const NavBar({
-    required this.currentIndex,
-  });
+  @override
+  _NavBarState createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed, // Fixed number of icons
-      currentIndex: currentIndex,
-      //onTap: onItemSelected,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
-          label: 'Cart',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.event),
-          label: 'My Events',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.chat),
-          label: 'Chat',
-        ),
+    return NavigationBar(
+      destinations: [
+        NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+        NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+        NavigationDestination(
+            icon: Icon(Icons.storage_outlined), label: 'Tickets'),
+        NavigationDestination(
+            icon: Icon(Icons.message_outlined), label: 'Chats'),
       ],
+      selectedIndex: currentIndex,
+      onDestinationSelected: (int index) {
+        setState(() {
+          currentIndex = index;
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => widget.screens[index]));
+        });
+      },
     );
   }
 }
