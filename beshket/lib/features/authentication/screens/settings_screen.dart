@@ -11,20 +11,27 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title:
-              Text('Settings', style: TextStyle(fontWeight: FontWeight.bold)),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white,
         ),
-        body: Column(
-          children: <Widget>[
-            Center(
-                child: ElevatedButton(
-              child: Text('Push me!'),
-              onPressed: () {
-                print('Settings button pressed.');
-              },
-            ))
-          ],
-        ));
+        title: Text('Settings', style: TextStyle(fontWeight: FontWeight.bold)),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Center(
+              child: ElevatedButton(
+                child: Text('Push me!'),
+                onPressed: () {
+                  print('Settings button pressed.');
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

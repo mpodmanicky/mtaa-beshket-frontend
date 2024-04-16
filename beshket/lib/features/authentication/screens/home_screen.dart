@@ -78,6 +78,10 @@ class _HomePageState extends State<HomeScreen> {
                 },
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SegmentedFilterButton(),
+            ),
           ],
         ),
       ),
