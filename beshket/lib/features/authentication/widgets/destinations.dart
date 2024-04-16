@@ -8,7 +8,7 @@ class Destination {
 
 const List<Destination> destinations = <Destination>[
   Destination(Icons.shopping_basket_rounded, 'Cart'),
-  Destination(Icons.home_max_rounded, 'Home'),
+  Destination(Icons.home, 'Home'),
   Destination(Icons.storage_rounded, 'Tickets'),
-  Destination(Icons.messenger_rounded, 'Messages'),
+  Destination(Icons.message_rounded, 'Messages'),
 ];

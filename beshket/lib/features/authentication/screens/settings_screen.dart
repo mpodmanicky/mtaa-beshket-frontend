@@ -1,5 +1,3 @@
-import 'package:beshket/features/authentication/screens/cart_screen.dart';
-import 'package:beshket/features/authentication/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
@@ -13,18 +11,20 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Center(
-            child: ElevatedButton(
-              child: Text('Settings Screen'),
+        appBar: AppBar(
+          title:
+              Text('Settings', style: TextStyle(fontWeight: FontWeight.bold)),
+        ),
+        body: Column(
+          children: <Widget>[
+            Center(
+                child: ElevatedButton(
+              child: Text('Push me!'),
               onPressed: () {
-                Navigator.pop(context);
+                print('Settings button pressed.');
               },
-            ),
-          ),
-        ],
-      ),
-    );
+            ))
+          ],
+        ));
   }
 }

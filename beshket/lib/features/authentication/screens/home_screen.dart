@@ -4,6 +4,9 @@ import 'package:beshket/features/authentication/screens/cart_screen.dart';
 import 'package:beshket/features/authentication/screens/chat_screen.dart';
 import 'package:beshket/features/authentication/screens/settings_screen.dart';
 import 'package:beshket/features/authentication/screens/tickets_screen.dart';
+import 'package:beshket/features/authentication/widgets/destinations.dart';
+import 'package:beshket/features/authentication/widgets/homescreen_buttons.dart';
+import 'package:flutter/widgets.dart';
 import '../widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +28,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomePageState extends State<HomeScreen> {
   int currentPageIndex = 1;
+
   _signOut() async {
     try {
       await widget.authentication.signOut();
@@ -74,74 +78,26 @@ class _HomePageState extends State<HomeScreen> {
                 },
               ),
             ),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          print('Button was pressed.');
-                        },
-                        child: Text('Recommended'),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          print('Button was pressed.');
-                        },
-                        child: Text('Popular'),
-                      ),
-                    ),
-                  ],
-                )),
           ],
         ),
       ),
       //navigation bar reusable
       bottomNavigationBar: NavigationBar(
-        //indicator colour
-        indicatorColor: Colors.lightBlueAccent,
-        //index of a page
+        elevation: 1,
+        backgroundColor: Colors.white,
+        indicatorColor: const Color.fromARGB(255, 213, 233, 241),
+        destinations: destinations.map<NavigationDestination>((d) {
+          return NavigationDestination(
+            icon: Icon(d.icon),
+            label: d.label,
+          );
+        }).toList(),
         selectedIndex: currentPageIndex,
-        //callback function what to do to change index
-        onDestinationSelected: (int index) {
+        onDestinationSelected: (index) {
           setState(() {
             currentPageIndex = index;
           });
-          switch (index) {
-            case 0:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Cart()),
-              );
-              break;
-            case 1:
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Tickets()),
-              );
-              break;
-            case 3:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Chats()),
-              );
-          }
         },
-        //destinations for the navbar
-        destinations: [
-          NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(
-              icon: Icon(Icons.storage_outlined), label: 'Tickets'),
-          NavigationDestination(
-              icon: Icon(Icons.message_outlined), label: 'Chats'),
-        ],
       ),
     );
   }
