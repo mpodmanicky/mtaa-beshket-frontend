@@ -13,10 +13,20 @@ class AuthenticationSignUpButtonWidget extends StatelessWidget {
           ? loginScreenState.showLoginForm
           : loginScreenState.showSignUpForm,
       child: loginScreenState.getFormMode() == FormMode.signUp
-          ? Text('Sing in',
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold))
-          : Text('Create an account',
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+          ? Text(
+              'Sing in',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          : Text(
+              'Create an account',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
     );
   }
 }

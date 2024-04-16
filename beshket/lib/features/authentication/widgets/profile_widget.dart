@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String name;
-  final VoidCallback settingsCallback;
+  final Function settingsCallback;
 
   const ProfileWidget(
       {Key? key, required this.name, required this.settingsCallback})
@@ -37,7 +37,7 @@ class ProfileWidget extends StatelessWidget {
           width: 16,
         ),
         IconButton(
-            onPressed: settingsCallback,
+            onPressed: settingsCallback(),
             padding: EdgeInsets.only(left: 8.0, right: 8.0),
             icon: Icon(Icons.settings)),
       ],

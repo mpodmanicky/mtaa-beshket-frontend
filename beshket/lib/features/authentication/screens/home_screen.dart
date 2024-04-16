@@ -1,5 +1,6 @@
 //Author: <Martin Podmanicky>
 
+import 'package:beshket/features/authentication/screens/settings_screen.dart';
 import '../widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -52,13 +53,13 @@ class _HomePageState extends State<HomeScreen> {
           padding: EdgeInsets.symmetric(vertical: 15.0),
           children: <Widget>[
             ProfileWidget(
-              //Update name of the logged in user
-              name: 'Admin',
-              //Create call back function to change to settings screen
-              settingsCallback: () {
-                print('Button was pressed.');
-              },
-            ),
+                //Update name of the logged in user
+                name: 'Admin',
+                //Create call back function to change to settings screen
+                settingsCallback: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Settings()));
+                }),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 50.0),
               child: TextField(
