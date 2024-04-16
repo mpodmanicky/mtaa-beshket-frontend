@@ -1,6 +1,9 @@
 //Author: <Martin Podmanicky>
 
+import 'package:beshket/features/authentication/screens/cart_screen.dart';
+import 'package:beshket/features/authentication/screens/chat_screen.dart';
 import 'package:beshket/features/authentication/screens/settings_screen.dart';
+import 'package:beshket/features/authentication/screens/tickets_screen.dart';
 import '../widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -53,13 +56,10 @@ class _HomePageState extends State<HomeScreen> {
           padding: EdgeInsets.symmetric(vertical: 15.0),
           children: <Widget>[
             ProfileWidget(
-                //Update name of the logged in user
-                name: 'Admin',
-                //Create call back function to change to settings screen
-                settingsCallback: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Settings()));
-                }),
+              //Update name of the logged in user
+              name: 'Admin',
+              //Create call back function to change to settings screen
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 50.0),
               child: TextField(
@@ -108,7 +108,30 @@ class _HomePageState extends State<HomeScreen> {
         selectedIndex: currentPageIndex,
         //callback function what to do to change index
         onDestinationSelected: (int index) {
-          setState(() => {currentPageIndex = index});
+          setState(() {
+            currentPageIndex = index;
+          });
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cart()),
+              );
+              break;
+            case 1:
+              break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Tickets()),
+              );
+              break;
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Chats()),
+              );
+          }
         },
         //destinations for the navbar
         destinations: [

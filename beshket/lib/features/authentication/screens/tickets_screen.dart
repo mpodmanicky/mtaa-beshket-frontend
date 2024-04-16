@@ -1,3 +1,5 @@
+import 'package:beshket/features/authentication/screens/cart_screen.dart';
+import 'package:beshket/features/authentication/screens/chat_screen.dart';
 import 'package:beshket/features/authentication/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,17 @@ class _TicketsState extends State<Tickets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Column(
+        children: [
+          Center(
+            child: ElevatedButton(
+                child: Text('Tickets Screen'),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+          )
+        ],
+      ),
       bottomNavigationBar: NavigationBar(
         //indicator colour
         indicatorColor: Colors.lightBlueAccent,
@@ -20,7 +33,26 @@ class _TicketsState extends State<Tickets> {
         selectedIndex: currentPageIndex,
         //callback function what to do to change index
         onDestinationSelected: (int index) {
-          setState(() => {currentPageIndex = index});
+          setState(() {
+            currentPageIndex = index;
+          });
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cart()),
+              );
+              break;
+            case 1:
+              break;
+            case 2:
+              break;
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Chats()),
+              );
+          }
         },
         //destinations for the navbar
         destinations: [

@@ -1,14 +1,15 @@
 //Author: <Martin Podmanicky>
 
+import 'package:beshket/features/authentication/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String name;
-  final Function settingsCallback;
 
-  const ProfileWidget(
-      {Key? key, required this.name, required this.settingsCallback})
-      : super(key: key);
+  const ProfileWidget({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,12 @@ class ProfileWidget extends StatelessWidget {
           width: 16,
         ),
         IconButton(
-            onPressed: settingsCallback(),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Settings()),
+              );
+            },
             padding: EdgeInsets.only(left: 8.0, right: 8.0),
             icon: Icon(Icons.settings)),
       ],
