@@ -2,12 +2,9 @@
 
 import 'package:beshket/features/authentication/screens/cart_screen.dart';
 import 'package:beshket/features/authentication/screens/chat_screen.dart';
-import 'package:beshket/features/authentication/screens/settings_screen.dart';
+import 'package:beshket/features/authentication/screens/homescreen_after_auth.dart';
 import 'package:beshket/features/authentication/screens/tickets_screen.dart';
 import 'package:beshket/features/authentication/widgets/destinations.dart';
-import 'package:beshket/features/authentication/widgets/homescreen_buttons.dart';
-import 'package:flutter/widgets.dart';
-import '../widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../services/auth_firebase.dart';
@@ -27,7 +24,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeScreen> {
-  int currentPageIndex = 1;
+  int currentPageIndex = 0;
+  String _userId = '';
+  String get userId => _userId;
 
   _signOut() async {
     try {
@@ -56,33 +55,18 @@ class _HomePageState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(vertical: 15.0),
+        child: PageView(
           children: <Widget>[
-            ProfileWidget(
-              //Update name of the logged in user
-              name: 'Admin',
-              //Create call back function to change to settings screen
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                ),
-                onSubmitted: (query) {
-                  print('Searching for: $query');
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: SegmentedFilterButton(),
-            ),
+            MainScreen(),
+            Tickets(),
+            Chats(),
+            Cart(),
           ],
+          onPageChanged: (index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
         ),
       ),
       //navigation bar reusable

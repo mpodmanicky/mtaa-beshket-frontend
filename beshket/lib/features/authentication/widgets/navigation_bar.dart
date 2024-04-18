@@ -2,7 +2,6 @@
 
 import 'package:beshket/features/authentication/screens/cart_screen.dart';
 import 'package:beshket/features/authentication/screens/chat_screen.dart';
-import 'package:beshket/features/authentication/screens/home_screen.dart';
 import 'package:beshket/features/authentication/screens/tickets_screen.dart';
 import 'package:flutter/material.dart';
 
