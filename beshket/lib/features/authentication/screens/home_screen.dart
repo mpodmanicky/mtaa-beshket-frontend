@@ -4,7 +4,6 @@ import 'package:beshket/features/authentication/screens/cart_screen.dart';
 import 'package:beshket/features/authentication/screens/chat_screen.dart';
 import 'package:beshket/features/authentication/screens/homescreen_after_auth.dart';
 import 'package:beshket/features/authentication/screens/tickets_screen.dart';
-import 'package:beshket/features/authentication/widgets/destinations.dart';
 import 'package:flutter/material.dart';
 
 import '../services/auth_firebase.dart';
@@ -26,8 +25,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomePageState extends State<HomeScreen> {
   int currentPageIndex = 0;
-  String _userId = '';
-  String get userId => _userId;
+  final PageController _controller = PageController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   _signOut() async {
     try {
@@ -57,13 +59,13 @@ class _HomePageState extends State<HomeScreen> {
       ),
       body: SafeArea(
         child: PageView(
-          controller: PageController(initialPage: currentPageIndex),
+          controller: _controller,
           onPageChanged: (index) {
             setState(() {
               currentPageIndex = index;
             });
           },
-          children: <Widget>[
+          children: const <Widget>[
             MainScreen(),
             Tickets(),
             Chats(),
@@ -71,24 +73,53 @@ class _HomePageState extends State<HomeScreen> {
           ],
         ),
       ),
-      //navigation bar reusable
       bottomNavigationBar: NavigationBar(
-        elevation: 1,
-        backgroundColor: Colors.white,
-        indicatorColor: const Color.fromARGB(255, 213, 233, 241),
-        destinations: destinations.map<NavigationDestination>((d) {
-          return NavigationDestination(
-            icon: Icon(d.icon),
-            label: d.label,
-          );
-        }).toList(),
-        selectedIndex: currentPageIndex,
         onDestinationSelected: (index) {
           setState(() {
             currentPageIndex = index;
           });
+          _controller.animateToPage(currentPageIndex,
+              duration: Duration(milliseconds: 300), curve: Curves.ease);
         },
+        selectedIndex: currentPageIndex,
+        elevation: 1.0,
+        destinations: const <Widget>[
+          NavigationDestination(
+            icon: Icon(Icons.home_rounded),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.storage_rounded),
+            label: 'Tickets',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.message_rounded),
+            label: 'Chats',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.shopping_cart_rounded),
+            label: 'Cart',
+          ),
+        ],
       ),
+      //navigation bar reusable
+      // bottomNavigationBar: NavigationBar(
+      //   elevation: 1,
+      //   backgroundColor: Colors.white,
+      //   indicatorColor: const Color.fromARGB(255, 213, 233, 241),
+      //   destinations: destinations.map<NavigationDestination>((d) {
+      //     return NavigationDestination(
+      //       icon: Icon(d.icon),
+      //       label: d.label,
+      //     );
+      //   }).toList(),
+      //   selectedIndex: currentPageIndex,
+      //   onDestinationSelected: (index) {
+      //     setState(() {
+      //       currentPageIndex = index;
+      //     });
+      //   },
+      // ),
     );
   }
 }
