@@ -102,24 +102,6 @@ class _HomePageState extends State<HomeScreen> {
           ),
         ],
       ),
-      //navigation bar reusable
-      // bottomNavigationBar: NavigationBar(
-      //   elevation: 1,
-      //   backgroundColor: Colors.white,
-      //   indicatorColor: const Color.fromARGB(255, 213, 233, 241),
-      //   destinations: destinations.map<NavigationDestination>((d) {
-      //     return NavigationDestination(
-      //       icon: Icon(d.icon),
-      //       label: d.label,
-      //     );
-      //   }).toList(),
-      //   selectedIndex: currentPageIndex,
-      //   onDestinationSelected: (index) {
-      //     setState(() {
-      //       currentPageIndex = index;
-      //     });
-      //   },
-      // ),
     );
   }
 }
