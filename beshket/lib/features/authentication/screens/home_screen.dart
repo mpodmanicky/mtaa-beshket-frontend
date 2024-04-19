@@ -1,11 +1,6 @@
 //Author: <Martin Podmanicky>
-
-import 'package:beshket/features/authentication/screens/cart_screen.dart';
-import 'package:beshket/features/authentication/screens/chat_screen.dart';
-import 'package:beshket/features/authentication/screens/homescreen_after_auth.dart';
-import 'package:beshket/features/authentication/screens/tickets_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'screens.dart';
 import '../services/auth_firebase.dart';
 
 class HomeScreen extends StatefulWidget {

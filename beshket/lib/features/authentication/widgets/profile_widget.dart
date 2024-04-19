@@ -1,7 +1,6 @@
 //Author: <Martin Podmanicky>
-
-import 'package:beshket/features/authentication/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:beshket/features/authentication/screens/screens.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String name;
@@ -41,7 +40,7 @@ class ProfileWidget extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Settings()),
+                MaterialPageRoute(builder: (context) => SettingsScreen()),
               );
             },
             padding: EdgeInsets.only(left: 8.0, right: 8.0),
