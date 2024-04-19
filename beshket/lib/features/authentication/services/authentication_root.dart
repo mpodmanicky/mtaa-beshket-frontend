@@ -4,37 +4,31 @@ import '../screens/home_screen.dart';
 import '../screens/progress_screen.dart';
 import 'package:flutter/material.dart';
 
-
-
-
 class AuthenticationRoot extends StatefulWidget {
-  AuthenticationRoot({ required this.authentication });
+  AuthenticationRoot({required this.authentication});
 
-  final FireBaseAuth authentication ;
+  final FireBaseAuth authentication;
 
   @override
   State<StatefulWidget> createState() => _AuthenticationRootState();
 }
 
-enum AuthenticationStatus {
-  loggedOut,
-  loggedIn,
-  notDetermined
-}
+enum AuthenticationStatus { loggedOut, loggedIn, notDetermined }
 
 class _AuthenticationRootState extends State<AuthenticationRoot> {
-  AuthenticationStatus authenticationStatus = AuthenticationStatus.notDetermined;
+  AuthenticationStatus authenticationStatus =
+      AuthenticationStatus.notDetermined;
   String _userId = '';
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    widget.authentication.getCurrentUser().then((user){
+    widget.authentication.getCurrentUser().then((user) {
       setState(() {
-        if(user != null){
+        if (user != null) {
           _userId = user.uid;
           authenticationStatus = AuthenticationStatus.loggedIn;
-        } else{
+        } else {
           authenticationStatus = AuthenticationStatus.loggedOut;
         }
       });
@@ -61,14 +55,12 @@ class _AuthenticationRootState extends State<AuthenticationRoot> {
 
   @override
   Widget build(BuildContext context) {
-    switch(authenticationStatus) {
+    switch (authenticationStatus) {
       case AuthenticationStatus.loggedOut:
         return LoginScreen(
-          authentication: widget.authentication,
-          onSignedIn: _onLoggedIn
-        );
+            authentication: widget.authentication, onSignedIn: _onLoggedIn);
       case AuthenticationStatus.loggedIn:
-        if (_userId.isNotEmpty ){
+        if (_userId.isNotEmpty) {
           return HomeScreen(
             userId: _userId,
             authentication: widget.authentication,
@@ -83,5 +75,4 @@ class _AuthenticationRootState extends State<AuthenticationRoot> {
         return ProgressScreen();
     }
   }
-
 }
