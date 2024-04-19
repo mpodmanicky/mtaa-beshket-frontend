@@ -1,11 +1,14 @@
+// import 'package:beshket/features/authentication/screens/log_in_screen.dart';
+// import 'package:beshket/features/authentication/screens/register_screen.dart';
+import 'package:beshket/features/authentication/services/login_or_register.dart';
+
 import 'global_variables/global_app_bar.dart';
 import 'global_variables/global_scaffold.dart';
-import 'features/authentication/services/authentication_root.dart';
-import 'features/authentication/services/auth_firebase.dart';
+// import 'features/authentication/services/authentication_root.dart';
+// import 'features/authentication/services/auth_firebase.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-    
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +19,6 @@ void main() async {
 }
 
 class StartingPage extends StatelessWidget {
-  
   const StartingPage({super.key});
 
   @override
@@ -24,30 +26,23 @@ class StartingPage extends StatelessWidget {
     return MaterialApp(
       title: 'Beshket',
       theme: ThemeData(
-        scaffoldBackgroundColor: GlobalScaffold.backgroundColor,
-        colorScheme: const ColorScheme.light(
-          primary: GlobalScaffold.secondaryColor,
-        ),
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          color: GlobalAppBar.appBarColor,
-          titleTextStyle: TextStyle(
-            color: GlobalAppBar.appBarTextColor,
-            fontSize: GlobalAppBar.appBarTextSize,
-            fontWeight: GlobalAppBar.appBarTextWeight
+          scaffoldBackgroundColor: GlobalScaffold.backgroundColor,
+          colorScheme: const ColorScheme.light(
+            primary: GlobalScaffold.secondaryColor,
           ),
-          iconTheme: IconThemeData(
-            color: Colors.black,
-          )
-        )
-      ), 
+          appBarTheme: const AppBarTheme(
+              elevation: 0,
+              color: GlobalAppBar.appBarColor,
+              titleTextStyle: TextStyle(
+                  color: GlobalAppBar.appBarTextColor,
+                  fontSize: GlobalAppBar.appBarTextSize,
+                  fontWeight: GlobalAppBar.appBarTextWeight),
+              iconTheme: IconThemeData(
+                color: Colors.black,
+              ))),
       //onGenerateRoute: (settings) => generateRoute(settings),
-      home: AuthenticationRoot(authentication: Authentication(),),
+      home:
+          LoginOrRegister(), //AuthenticationRoot(authentication: Authentication(),),
     );
   }
-    
-
 }
-
-
-

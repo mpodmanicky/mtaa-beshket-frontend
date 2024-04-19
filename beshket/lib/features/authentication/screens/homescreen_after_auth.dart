@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:beshket/features/authentication/widgets/homescreen_buttons.dart';
 import 'package:beshket/features/authentication/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,6 +13,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  String _buttonText = 'Push me!';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +37,21 @@ class _MainScreenState extends State<MainScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0),
             child: SegmentedFilterButton(),
-          )
+          ),
+          //Connection to node.js server successful
+          // Center(
+          //   child: ElevatedButton(
+          //     onPressed: () async {
+          //       final response =
+          //           await http.get(Uri.parse('http://localhost:3000/test'));
+          //       print('Response from server: ${response.body}');
+          //       setState(() {
+          //         _buttonText = jsonDecode(response.body)['message'];
+          //       });
+          //     },
+          //     child: Text(_buttonText),
+          //   ),
+          // ),
         ],
       ),
     );
