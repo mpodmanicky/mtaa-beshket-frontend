@@ -23,12 +23,13 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return NavigationBar(
       destinations: [
-        NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
         NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
         NavigationDestination(
-            icon: Icon(Icons.storage_outlined), label: 'Tickets'),
+            icon: Icon(Icons.storage_rounded), label: 'Tickets'),
         NavigationDestination(
-            icon: Icon(Icons.message_outlined), label: 'Chats'),
+            icon: Icon(Icons.message_rounded), label: 'Chats'),
+        NavigationDestination(
+            icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
       ],
       selectedIndex: currentIndex,
       onDestinationSelected: (int index) {
