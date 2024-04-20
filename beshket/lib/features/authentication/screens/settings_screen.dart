@@ -17,7 +17,8 @@ class SettingsScreen extends StatelessWidget {
           IconButton(
               icon: Icon(Icons.dark_mode),
               onPressed: () {
-                Provider.of<ThemeModeProvider>(context).toggleTheme();
+                Provider.of<ThemeModeProvider>(context, listen: false)
+                    .toggleTheme();
               }),
         ],
       ),
