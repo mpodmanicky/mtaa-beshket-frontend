@@ -138,7 +138,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void checkAuthentication(bool authenticated) {
     if (authenticated) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => HomeScreen(name: _username),
