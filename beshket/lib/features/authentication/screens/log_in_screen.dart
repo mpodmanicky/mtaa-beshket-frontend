@@ -25,8 +25,12 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text('Beshket'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: const Text(
+          'Beshket',
+        ),
       ),
       body: SafeArea(
         child: Center(
@@ -38,12 +42,12 @@ class _LoginFormState extends State<LoginForm> {
                 Icon(
                   Icons.login_rounded,
                   size: 80,
-                  color: GlobalIcons.iconColorPrimary,
+                  color: Theme.of(context).colorScheme.tertiary,
                 ),
                 SizedBox(height: 60),
                 Text('Welcome to Beshket! Please Log In.',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     )),
@@ -82,7 +86,7 @@ class _LoginFormState extends State<LoginForm> {
                   children: [
                     Text('Not a member?',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: Theme.of(context).colorScheme.primary,
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
                         )),
@@ -94,7 +98,7 @@ class _LoginFormState extends State<LoginForm> {
                       child: Text(
                         'Register',
                         style: TextStyle(
-                          color: Colors.lightBlueAccent,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),

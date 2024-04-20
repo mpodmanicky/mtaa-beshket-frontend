@@ -40,9 +40,13 @@ class _HomePageState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           'BESHKET',
-          style: TextStyle(fontWeight: FontWeight.w900),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w900,
+          ),
         ),
         actions: <Widget>[
           TextButton(
@@ -81,6 +85,7 @@ class _HomePageState extends State<HomeScreen> {
         },
         selectedIndex: currentPageIndex,
         elevation: 1.0,
+        backgroundColor: Theme.of(context).colorScheme.background,
         destinations: const <Widget>[
           NavigationDestination(
             icon: Icon(Icons.home_rounded),

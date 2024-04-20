@@ -44,8 +44,9 @@ class _MyButtonState extends State<MyButton>
         child: Container(
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-            color: Colors
-                .blue, // Use a specific color (avoid GlobalAppBar.appBarColor)
+            color: Theme.of(context)
+                .colorScheme
+                .primary, // Use a specific color (avoid GlobalAppBar.appBarColor)
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(
