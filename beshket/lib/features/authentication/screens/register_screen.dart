@@ -17,6 +17,15 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _passwordConfrimController =
+      TextEditingController();
+
+  String _email = "";
+  String _password = "";
+  String _name = "";
+  String _age = "";
+  String _passwordConfirm = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,10 +48,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text('Welcome to Beshket! Please register.',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                     )),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 CustomTextField(
                   controller: _nameController,
                   hintText: 'Your name',
@@ -62,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 20),
                 CustomTextField(
-                  controller: _passwordController,
+                  controller: _passwordConfrimController,
                   hintText: 'Confirm password',
                   obscureText: true,
                 ),
@@ -75,7 +84,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 MyButton(
                     hintText: 'Register',
                     onTap: () {
-                      print('Log in pressed.');
+                      setState(() {
+                        _email = _emailController.text;
+                        _password = _passwordController.text;
+                        _name = _nameController.text;
+                        _age = _ageController.text;
+                        _passwordConfirm = _passwordConfrimController.text;
+                      }); // Save the values
+                      print(
+                          _name + _email + _password + _passwordConfirm + _age);
                     }),
                 SizedBox(height: 20),
                 Row(

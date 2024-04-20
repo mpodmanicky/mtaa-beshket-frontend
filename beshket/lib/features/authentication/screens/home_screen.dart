@@ -1,24 +1,22 @@
 //Author: <Martin Podmanicky>
 import 'package:flutter/material.dart';
 import 'screens.dart';
-import '../services/auth_firebase.dart';
+// import '../services/auth_firebase.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
-    required this.authentication,
-    required this.userId,
-    required this.onSignedOut,
+    super.key,
+    required this.name,
   });
-
-  final FireBaseAuth authentication;
-  final VoidCallback onSignedOut;
-  final String userId;
+  final String name;
 
   @override
   State<StatefulWidget> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomeScreen> {
+  static const String _username = '';
+  String get name => _username;
   int currentPageIndex = 0;
   final PageController _controller = PageController();
   @override
@@ -26,14 +24,14 @@ class _HomePageState extends State<HomeScreen> {
     super.initState();
   }
 
-  _signOut() async {
-    try {
-      await widget.authentication.signOut();
-      widget.onSignedOut();
-    } catch (e) {
-      print(e);
-    }
-  }
+  // _signOut() async {
+  //   try {
+  //     await widget.authentication.signOut();
+  //     widget.onSignedOut();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   // Added styling to text
   @override
@@ -46,7 +44,7 @@ class _HomePageState extends State<HomeScreen> {
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: _signOut,
+            onPressed: () => print('Logout pressed'),
             child: Text('Logout',
                 style: TextStyle(fontSize: 17.0, color: Colors.white)),
           ),
@@ -61,7 +59,9 @@ class _HomePageState extends State<HomeScreen> {
             });
           },
           children: const <Widget>[
-            MainScreen(),
+            MainScreen(
+              name: _username,
+            ),
             Tickets(),
             Chats(),
             Cart(),
