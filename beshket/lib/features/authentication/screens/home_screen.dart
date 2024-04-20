@@ -1,5 +1,8 @@
 //Author: <Martin Podmanicky>
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:beshket/features/authentication/services/login_or_register.dart';
 import 'package:flutter/material.dart';
+// import 'package:scoped_model/scoped_model.dart';
 import 'screens.dart';
 // import '../services/auth_firebase.dart';
 
@@ -15,10 +18,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeScreen> {
-  static const String _username = '';
-  String get name => _username;
   int currentPageIndex = 0;
   final PageController _controller = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +46,8 @@ class _HomePageState extends State<HomeScreen> {
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => print('Logout pressed'),
+            onPressed: () => Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => LoginOrRegister())),
             child: Text('Logout',
                 style: TextStyle(fontSize: 17.0, color: Colors.white)),
           ),
@@ -58,9 +61,9 @@ class _HomePageState extends State<HomeScreen> {
               currentPageIndex = index;
             });
           },
-          children: const <Widget>[
+          children: <Widget>[
             MainScreen(
-              name: _username,
+              name: widget.name,
             ),
             Tickets(),
             Chats(),

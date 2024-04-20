@@ -5,7 +5,6 @@ import 'package:beshket/features/authentication/widgets/custom_signin_button.dar
 import 'package:beshket/features/authentication/widgets/custom_textfield.dart';
 import 'package:beshket/global_variables/global_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
 class LoginForm extends StatefulWidget {
@@ -115,8 +114,6 @@ class _LoginFormState extends State<LoginForm> {
     if (email.isEmpty || password.isEmpty) {
       return 'Please fill in all fields.';
     } else {
-      print(email);
-      print(password);
       final response = await http.post(
         Uri.parse('http://localhost:3000/admin'),
         body: jsonEncode({
@@ -128,7 +125,6 @@ class _LoginFormState extends State<LoginForm> {
       );
       if (response.statusCode == 200) {
         _username = jsonDecode(response.body)['username'];
-        print('Response from server: ${response.body}');
         return 'OK';
       } else {
         return 'Failed to connect to server.';

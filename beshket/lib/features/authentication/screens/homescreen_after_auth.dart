@@ -15,8 +15,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   // String _buttonText = 'Push me!';
-  String _username = '';
-  String get name => _username;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           Padding(
             padding: EdgeInsets.only(top: 15.0),
-            child: ProfileWidget(name: _username),
+            child: ProfileWidget(name: widget.name),
           ),
           Padding(
             padding: EdgeInsets.all(15.0),
