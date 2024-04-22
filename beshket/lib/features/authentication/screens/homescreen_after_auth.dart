@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
     _fetchEvents();
 
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(top: 15.0),
@@ -63,38 +63,41 @@ class _MainScreenState extends State<MainScreen> {
             padding: EdgeInsets.symmetric(horizontal: 15.0),
             child: SegmentedFilterButton(),
           ),
+          SizedBox(height: 10.0),
           _events.isEmpty
               ? Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _events.length,
-                  itemBuilder: (context, index) {
-                    final event = _events[index];
-                    return Card(
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              event.imagePath,
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
+              : Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _events.length,
+                    itemBuilder: (context, index) {
+                      final event = _events[index];
+                      return Card(
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                event.imagePath,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 10.0),
-                          Expanded(
-                            child: ListTile(
-                              title: Text(event.name),
-                              subtitle:
-                                  Text('${event.date} - ${event.location}'),
-                              trailing: Text(event.price),
+                            SizedBox(width: 10.0),
+                            Expanded(
+                              child: ListTile(
+                                title: Text(event.name),
+                                subtitle:
+                                    Text('${event.date} - ${event.location}'),
+                                trailing: Text(event.price),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
         ],
       ),
