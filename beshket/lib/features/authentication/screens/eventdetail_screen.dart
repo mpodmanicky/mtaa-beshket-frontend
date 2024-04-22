@@ -54,6 +54,7 @@ class EventDetail extends StatelessWidget {
               MyButton(
                 hintText: 'Add to cart',
                 onTap: () {
+                  print('Adding to cart ${event.name}');
                   Provider.of<CartProvider>(context, listen: false)
                       .addToCart(event);
                 },

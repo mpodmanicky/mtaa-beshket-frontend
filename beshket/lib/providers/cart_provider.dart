@@ -10,19 +10,26 @@ class CartProvider extends ChangeNotifier {
   List<CartItem> get cartItems => _cartItems; // Return an unmodifiable list
 
   void addToCart(Event event) {
-    // Check if event already exists in cart
-    final existingItem = _cartItems.firstWhere((item) => item.event == event);
-    if (existingItem != null) {
-      existingItem.setQuantity =
-          existingItem.getQuantity + 1; // Use the existing quantity property
-    } else {
-      _cartItems.add(CartItem(event, 1));
-    }
+    _cartItems.add(CartItem(event, 1));
     notifyListeners();
   }
 
   void resetCart() {
     _cartItems = [];
     notifyListeners();
+  }
+
+  void removeFromCart(CartItem cartItem) {
+    _cartItems.remove(cartItem);
+    notifyListeners();
+  }
+
+  double getTotalPrice() {
+    double totalPrice = 0.0;
+    for (var cartItem in _cartItems) {
+      double itemPrice = double.parse(cartItem.event.price);
+      totalPrice += itemPrice * cartItem.quantity;
+    }
+    return totalPrice;
   }
 }

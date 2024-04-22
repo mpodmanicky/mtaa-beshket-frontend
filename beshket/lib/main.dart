@@ -17,11 +17,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(ChangeNotifierProvider(
-    create: (context) => ThemeModeProvider(),
-    child: ChangeNotifierProvider(
-        create: (context) => CartProvider(), child: StartingPage()),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeModeProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+      ],
+      child: StartingPage(),
+    ),
+  );
 }
 
 class StartingPage extends StatelessWidget {
