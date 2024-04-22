@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:beshket/features/authentication/screens/eventdetail_screen.dart';
 import 'package:beshket/features/authentication/widgets/homescreen_buttons.dart';
 import 'package:beshket/features/authentication/widgets/profile_widget.dart';
 import 'package:beshket/models/event.dart';
@@ -86,11 +87,19 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                             SizedBox(width: 10.0),
                             Expanded(
-                              child: ListTile(
-                                title: Text(event.name),
-                                subtitle:
-                                    Text('${event.date} - ${event.location}'),
-                                trailing: Text(event.price),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return EventDetail(event: event);
+                                  }));
+                                },
+                                child: ListTile(
+                                  title: Text(event.name),
+                                  subtitle:
+                                      Text('${event.date} - ${event.location}'),
+                                  trailing: Text(event.price),
+                                ),
                               ),
                             ),
                           ],

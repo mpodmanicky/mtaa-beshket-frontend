@@ -50,8 +50,11 @@ class _HomePageState extends State<HomeScreen> {
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => LoginOrRegister())),
+            onPressed: () => {
+              dispose(),
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => LoginOrRegister()))
+            },
             child: Text('Logout',
                 style: TextStyle(fontSize: 17.0, color: Colors.white)),
           ),
