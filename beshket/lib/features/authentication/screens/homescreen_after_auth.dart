@@ -1,9 +1,10 @@
-// import 'dart:convert';
+import 'dart:convert';
 
 import 'package:beshket/features/authentication/widgets/homescreen_buttons.dart';
 import 'package:beshket/features/authentication/widgets/profile_widget.dart';
+import 'package:beshket/models/event.dart';
 import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key, required this.name});
@@ -15,9 +16,32 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   // String _buttonText = 'Push me!';
+  List<Event> _events = [];
+  Future<void> _fetchEvents() async {
+    try {
+      final response =
+          await http.get(Uri.parse('http://localhost:3000/temp/events'));
+      if (response.statusCode == 200) {
+        final eventsJson = jsonDecode(response.body) as List;
+        _events =
+            eventsJson.map((eventJson) => Event.fromJson(eventJson)).toList();
+        setState(() {});
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+      _fetchEvents();
+    }
+
+    _fetchEvents();
+
     return Scaffold(
       body: ListView(
         children: [
@@ -39,20 +63,39 @@ class _MainScreenState extends State<MainScreen> {
             padding: EdgeInsets.symmetric(horizontal: 15.0),
             child: SegmentedFilterButton(),
           ),
-          //Connection to node.js server successful
-          // Center(
-          //   child: ElevatedButton(
-          //     onPressed: () async {
-          //       final response =
-          //           await http.get(Uri.parse('http://localhost:3000/test'));
-          //       print('Response from server: ${response.body}');
-          //       setState(() {
-          //         _buttonText = jsonDecode(response.body)['message'];
-          //       });
-          //     },
-          //     child: Text(_buttonText),
-          //   ),
-          // ),
+          _events.isEmpty
+              ? Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _events.length,
+                  itemBuilder: (context, index) {
+                    final event = _events[index];
+                    return Card(
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              event.imagePath,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(width: 10.0),
+                          Expanded(
+                            child: ListTile(
+                              title: Text(event.name),
+                              subtitle:
+                                  Text('${event.date} - ${event.location}'),
+                              trailing: Text(event.price),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
         ],
       ),
     );
