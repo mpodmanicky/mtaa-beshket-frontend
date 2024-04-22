@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/animation.dart'; // Import for animations
+import 'package:flutter/material.dart'; // Import for animations
 
 class MyButton extends StatefulWidget {
   const MyButton({super.key, this.onTap, required this.hintText});

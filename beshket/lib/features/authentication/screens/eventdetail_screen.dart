@@ -57,6 +57,7 @@ class EventDetail extends StatelessWidget {
                   print('Adding to cart ${event.name}');
                   Provider.of<CartProvider>(context, listen: false)
                       .addToCart(event);
+                  Navigator.pop(context);
                 },
               ),
             ],

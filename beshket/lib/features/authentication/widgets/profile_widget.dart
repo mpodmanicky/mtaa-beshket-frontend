@@ -20,7 +20,8 @@ class ProfileWidget extends StatelessWidget {
         //Avatar
         CircleAvatar(
           radius: 40.0,
-          backgroundImage: NetworkImage('https://www.example.com/avatar.jpg'),
+          backgroundImage: NetworkImage(
+              'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
         ),
         //Name
         SizedBox(

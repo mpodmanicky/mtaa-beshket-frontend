@@ -34,15 +34,13 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    @override
-    void initState() {
-      super.initState();
-      _fetchEvents();
-    }
-
+  void initState() {
+    super.initState();
     _fetchEvents();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
