@@ -13,8 +13,8 @@ class _SegmentedFilterButtonState extends State<SegmentedFilterButton> {
   Widget build(BuildContext context) {
     return CupertinoSlidingSegmentedControl(
       children: const {
-        0: Text('Recommended'),
-        1: Text('Popular'),
+        0: Text('All events'),
+        1: Text('By location'),
       },
       groupValue: _sliding,
       onValueChanged: (int? newValue) {

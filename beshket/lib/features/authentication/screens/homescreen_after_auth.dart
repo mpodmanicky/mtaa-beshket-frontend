@@ -6,6 +6,7 @@ import 'package:beshket/features/authentication/widgets/profile_widget.dart';
 import 'package:beshket/models/event.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key, required this.name});
@@ -41,6 +42,18 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String _cityName = "";
+
+    Future<void> _getCity() async {
+      LocationData? locationData = await _getLocation();
+      if (locationData != null) {
+        String cityName = await _getCityName(locationData);
+        setState(() {
+          _cityName = cityName;
+        });
+      }
+    }
+
     return Scaffold(
       body: Column(
         children: [
