@@ -3,6 +3,7 @@ class Event {
   String price;
   String location;
   String date;
+  String description;
   String imagePath;
 
   Event({
@@ -10,6 +11,7 @@ class Event {
     required this.price,
     required this.location,
     required this.date,
+    required this.description,
     required this.imagePath,
   });
 
@@ -25,6 +27,7 @@ class Event {
       location: json['location'] as String,
       price: json['price'] as String,
       date: json['date'] as String,
+      description: json['description'] as String,
       imagePath: json['image_url'] as String,
     );
   }

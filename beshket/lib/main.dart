@@ -5,6 +5,7 @@
 // import 'features/authentication/services/authentication_root.dart';
 // import 'features/authentication/services/auth_firebase.dart';
 import 'package:beshket/features/authentication/services/login_or_register.dart';
+import 'package:beshket/providers/cart_provider.dart';
 import 'package:beshket/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -18,7 +19,8 @@ void main() async {
   );
   runApp(ChangeNotifierProvider(
     create: (context) => ThemeModeProvider(),
-    child: StartingPage(),
+    child: ChangeNotifierProvider(
+        create: (context) => CartProvider(), child: StartingPage()),
   ));
 }
 

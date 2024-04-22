@@ -1,7 +1,9 @@
 //Author: <Martin Podmanicky>
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:beshket/features/authentication/services/login_or_register.dart';
+import 'package:beshket/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:scoped_model/scoped_model.dart';
 import 'screens.dart';
 // import '../services/auth_firebase.dart';
@@ -19,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomePageState extends State<HomeScreen> {
   int currentPageIndex = 0;
+  bool hasItems = false;
   final PageController _controller = PageController();
 
   @override
@@ -89,7 +92,7 @@ class _HomePageState extends State<HomeScreen> {
         selectedIndex: currentPageIndex,
         elevation: 1.0,
         backgroundColor: Theme.of(context).colorScheme.background,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
             icon: Icon(Icons.home_rounded),
             label: 'Home',
@@ -103,7 +106,16 @@ class _HomePageState extends State<HomeScreen> {
             label: 'Chats',
           ),
           NavigationDestination(
-            icon: Icon(Icons.shopping_cart_rounded),
+            icon: Provider.of<CartProvider>(context).cartItems.isNotEmpty
+                ? Badge(
+                    label: Text(
+                      Provider.of<CartProvider>(context)
+                          .cartItems
+                          .length
+                          .toString(),
+                    ),
+                    child: Icon(Icons.shopping_cart_rounded))
+                : Icon(Icons.shopping_cart_rounded),
             label: 'Cart',
           ),
         ],

@@ -1,6 +1,9 @@
 //<Martin Podmanicky>
+import 'package:beshket/features/authentication/widgets/custom_signin_button.dart';
+import 'package:beshket/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:beshket/models/event.dart';
+import 'package:provider/provider.dart';
 
 class EventDetail extends StatelessWidget {
   const EventDetail({Key? key, required this.event}) : super(key: key);
@@ -12,6 +15,8 @@ class EventDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(event.name),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
       ),
       body: SingleChildScrollView(
         // For scrollable content
@@ -21,10 +26,13 @@ class EventDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Display event details (image, name, location, date, price, description, etc.)
-              Image.network(
-                event.imagePath,
-                width: double.infinity, // Adjust width as needed
-                fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  event.imagePath,
+                  width: double.infinity, // Adjust width as needed
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(height: 10.0),
               Text(
@@ -32,8 +40,24 @@ class EventDetail extends StatelessWidget {
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
               Text('${event.date} - ${event.location}'),
-              Text(event.price),
+              Text(
+                'Price: ${event.price}',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Description',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              Text(event.description),
+              SizedBox(height: 10.0),
               // ... other event details
+              MyButton(
+                hintText: 'Add to cart',
+                onTap: () {
+                  Provider.of<CartProvider>(context, listen: false)
+                      .addToCart(event);
+                },
+              ),
             ],
           ),
         ),
