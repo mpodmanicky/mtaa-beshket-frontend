@@ -1,8 +1,8 @@
 //<Martin Podmanicky>
 import 'package:location/location.dart';
 
-class RequestLocation {
-  Future<bool> _requestLocationPremission() async {
+class LocationService {
+  Future<bool> requestLocationPremission() async {
     Location location = new Location();
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
@@ -25,9 +25,9 @@ class RequestLocation {
     return true;
   }
 
-  Future<LocationData?> _getLocation() async {
+  Future<LocationData?> getLocation() async {
     Location location = new Location();
-    bool hasPermission = await _requestLocationPremission();
+    bool hasPermission = await requestLocationPremission();
     if (!hasPermission) {
       return null;
     }

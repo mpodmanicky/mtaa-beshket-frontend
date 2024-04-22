@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Chats extends StatefulWidget {
-  const Chats({super.key});
+  const Chats({super.key, required this.name});
+  final String name;
 
   @override
   State<Chats> createState() => _ChatsState();
@@ -20,7 +21,12 @@ class _ChatsState extends State<Chats> {
   Future<void> _fetchUsers() async {
     try {
       final response =
-          await http.get(Uri.parse('http://localhost:3000/temp/users'));
+          await http.post(Uri.parse('http://localhost:3000/temp/users'),
+              body: jsonEncode({
+                'name': widget.name,
+              }),
+              headers: {'Content-Type': 'application/json'},
+              encoding: Encoding.getByName('utf-8'));
       if (response.statusCode == 200) {
         final usersJson = jsonDecode(response.body) as List;
         users = usersJson.map((userJson) => User.fromJson(userJson)).toList();

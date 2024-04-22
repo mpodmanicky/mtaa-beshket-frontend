@@ -75,8 +75,8 @@ class _HomePageState extends State<HomeScreen> {
             MainScreen(
               name: widget.name,
             ),
-            Tickets(),
-            Chats(),
+            TicketPage(name: widget.name),
+            Chats(name: widget.name),
             Cart(),
           ],
         ),

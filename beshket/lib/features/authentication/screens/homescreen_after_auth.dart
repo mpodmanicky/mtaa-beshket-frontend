@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:beshket/features/authentication/screens/eventdetail_screen.dart';
+import 'package:beshket/features/authentication/services/transform_coord_location.dart';
+import 'package:beshket/features/authentication/services/location_service.dart';
 import 'package:beshket/features/authentication/widgets/homescreen_buttons.dart';
 import 'package:beshket/features/authentication/widgets/profile_widget.dart';
 import 'package:beshket/models/event.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:beshket/features/authentication/services/request_location_premission.dart';
-import 'package:beshket/features/authentication/services/transform_coord_location.dart';
 import 'package:location/location.dart';
 
 class MainScreen extends StatefulWidget {
@@ -37,12 +37,15 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   String _cityName = "";
+
   Future<void> _getCity() async {
-    LocationData? locationData = await _getLocation();
+    LocationService locationService = LocationService();
+    TransformCoordinates transformCoordinates = TransformCoordinates();
+    LocationData? locationData = await locationService.getLocation();
     if (locationData != null) {
-      String cityName = await _getCityName(locationData);
+      String? cityName = await transformCoordinates.getCityName(locationData);
       setState(() {
-        _cityName = cityName;
+        _cityName = cityName!;
       });
     }
   }
@@ -51,6 +54,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _fetchEvents();
+    // _getCity();
   }
 
   @override
@@ -74,7 +78,12 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0),
-            child: SegmentedFilterButton(),
+            child: GestureDetector(
+              child: SegmentedFilterButton(),
+              onTap: () {
+                print(_cityName);
+              },
+            ),
           ),
           SizedBox(height: 10.0),
           _events.isEmpty

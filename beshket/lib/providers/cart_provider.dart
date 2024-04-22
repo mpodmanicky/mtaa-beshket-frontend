@@ -30,6 +30,6 @@ class CartProvider extends ChangeNotifier {
       double itemPrice = double.parse(cartItem.event.price);
       totalPrice += itemPrice * cartItem.quantity;
     }
-    return totalPrice;
+    return double.parse(totalPrice.toStringAsFixed(2));
   }
 }

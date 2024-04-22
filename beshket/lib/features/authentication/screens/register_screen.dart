@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:beshket/features/authentication/widgets/age_textfield.dart';
 import 'package:beshket/features/authentication/widgets/custom_signin_button.dart';
 import 'package:beshket/features/authentication/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -22,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String _email = "";
   String _password = "";
   String _name = "";
-  String _age = "";
+  int _age = 0;
   String _passwordConfirm = "";
 
   @override
@@ -86,16 +89,42 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 20),
                 MyButton(
                     hintText: 'Register',
-                    onTap: () {
+                    onTap: () async {
                       setState(() {
                         _email = _emailController.text;
                         _password = _passwordController.text;
                         _name = _nameController.text;
-                        _age = _ageController.text;
+                        _age = int.parse(_ageController.text);
                         _passwordConfirm = _passwordConfrimController.text;
                       }); // Save the values
-                      print(
-                          _name + _email + _password + _passwordConfirm + _age);
+                      try {
+                        final response = await http.post(
+                            Uri.parse(
+                                'http://localhost:3000/temp/register/users'),
+                            body: jsonEncode({
+                              'name': _name,
+                              'email': _email,
+                              'password': _password,
+                              'passwordConfirm': _passwordConfirm,
+                              'age': _age,
+                              'imageUrl':
+                                  'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+                            }),
+                            headers: {'Content-Type': 'application/json'},
+                            encoding: Encoding.getByName('utf-8'));
+                        if (response.statusCode == 201) {
+                          print('User registered successfully');
+                        } else {
+                          print('Failed to connect to server.');
+                        }
+                      } catch (error) {
+                        print(error);
+                      }
+                      print(_name +
+                          _email +
+                          _password +
+                          _passwordConfirm +
+                          _age.toString());
                     }),
                 SizedBox(height: 20),
                 Row(
